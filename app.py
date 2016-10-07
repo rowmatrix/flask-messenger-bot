@@ -39,7 +39,19 @@ def webhook():
                     recipient_id = messaging_event["recipient"]["id"]  # the recipient's ID, which should be your page's facebook ID
                     message_text = messaging_event["message"]["text"]  # the message's text
 
-                    send_message(sender_id, "Echo: " + message_text)
+                    # send_message(sender_id, "Echo: " + message_text)
+
+                    # parse message_text and give appropriate response
+                    if message_text == '1':
+                        send_message(sender_id, "one")
+                    elif message_text == '2':
+                        send_message(sender_id, "two")
+                    elif message_text == '3':
+                        send_message(sender_id, "three")
+                    elif message_text == '4':
+                        send_message(sender_id, "four")
+                    else:
+                        send_message(sender_id, "What's this?")
 
                 if messaging_event.get("delivery"):  # delivery confirmation
                     pass
