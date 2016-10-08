@@ -150,7 +150,7 @@ def send_generic_message(recipient_id):
         }
     })
 
-    log("sending message to {recipient}: {attachments}".format(recipient=recipient_id, attachments=message_data["attachment"]))
+    log("sending message_attachments to {recipient}: ".format(recipient=recipient_id))
 
     call_send_api(message_data)
     
