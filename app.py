@@ -60,8 +60,10 @@ def received_message(event):
     recipient_id = event["recipient"]["id"]  # the recipient's ID, which should be your page's facebook ID
     
     # could receive text or attachment but not both
-    message_text = event["message"]["text"]
-    message_attachments = event["message"]["attachments"]   
+    if event["message"]["text"]:
+        message_text = event["message"]["text"]
+    else:
+        message_attachments = event["message"]["attachments"]   
 
     # parse message_text and give appropriate response
     if message_text:    
