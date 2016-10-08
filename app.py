@@ -62,11 +62,8 @@ def received_message(event):
     # could receive text or attachment but not both
     if "text" in event["message"]:
         message_text = event["message"]["text"]
-    elif "attachments" in event["message"]:
-        message_attachments = event["message"]["attachments"]   
 
-    # parse message_text and give appropriate response
-    if message_text:    
+        # parse message_text and give appropriate response   
         if message_text == 'image':
             # send_image_message(sender_id)
             pass
@@ -95,8 +92,9 @@ def received_message(event):
             #     send_message(sender_id, "four\nHere's a link: https://en.wikipedia.org/wiki/4_%28number%29")
             # else:
             #     send_message(sender_id, "What's this? Google: https://www.google.com/")
-
-    elif message_attachments:
+            
+    elif "attachments" in event["message"]:
+        message_attachments = event["message"]["attachments"]   
         send_text_message(sender_id, "Message with attachment received")
 
 
