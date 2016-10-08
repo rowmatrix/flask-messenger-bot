@@ -64,7 +64,7 @@ def received_message(event):
     if message["text"]:
         message_text = message["text"] 
     elif message["attachments"]:
-        message_attachments = message["attachment"]   
+        message_attachments = message["attachments"]   
 
     # parse message_text and give appropriate response
     if message_text:    
