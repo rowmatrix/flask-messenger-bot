@@ -61,7 +61,7 @@ def received_message(event):
     
     # could receive text or attachment but not both
     message_text = event["message"]["text"] 
-    message_attachments = event["message"]["attachments"]   
+    message_attachments = event["message"]["attachment"]   
 
     # parse message_text and give appropriate response
     if message_text:    
