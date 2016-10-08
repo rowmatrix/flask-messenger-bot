@@ -60,8 +60,12 @@ def received_message(event):
     recipient_id = event["recipient"]["id"]  # the recipient's ID, which should be your page's facebook ID
     
     # could receive text or attachment but not both
-    message_text = event["message"]["text"] 
-    message_attachments = event["message"]["attachment"]   
+    message = event["message"]
+    log("Received this message: " + message)  # display to heroku logs
+    if message["text"]:
+        message_text = message["text"] 
+    elif message["attachments"]:
+        message_attachments = message["attachment"]   
 
     # parse message_text and give appropriate response
     if message_text:    
