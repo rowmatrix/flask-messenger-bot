@@ -43,15 +43,15 @@ def webhook():
 
                     # parse message_text and give appropriate response
                     if message_text == '1':
-                        send_message(sender_id, "one")
+                        send_message(sender_id, "one\n Here's a link: https://en.wikipedia.org/wiki/1_%28number%29")
                     elif message_text == '2':
-                        send_message(sender_id, "two")
+                        send_message(sender_id, "two\n Here's a link: https://en.wikipedia.org/wiki/2_%28number%29")
                     elif message_text == '3':
-                        send_message(sender_id, "three")
+                        send_message(sender_id, "three\n Here's a link: https://en.wikipedia.org/wiki/3_%28number%29")
                     elif message_text == '4':
-                        send_message(sender_id, "four")
+                        send_message(sender_id, "four\n Here's a link: https://en.wikipedia.org/wiki/4_%28number%29")
                     else:
-                        send_message(sender_id, "What's this?")
+                        send_message(sender_id, "What's this? Google: https://www.google.com/")
 
                 if messaging_event.get("delivery"):  # delivery confirmation
                     pass
