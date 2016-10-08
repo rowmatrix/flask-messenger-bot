@@ -67,15 +67,19 @@ def received_message(event):
     if message_text:    
         if message_text == 'image':
             # send_image_message(sender_id)
+            pass
 
         elif message_text == 'button':
             # send_button_message(sender_id)
+            pass
 
         elif message_text == 'generic':
             # send_generic_message(sender_id)
+            pass
 
         elif message_text == 'receipt':
             # send_receipt_message(sender_id)
+            pass
 
         else: # default
             send_text_message(sender_id, "Echo: " + message_text)
