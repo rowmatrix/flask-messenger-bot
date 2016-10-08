@@ -45,8 +45,7 @@ def webhook():
                     # received_authentication(messaging_event)
 
                 elif messaging_event.get("postback"):  # user clicked/tapped "postback" button in earlier message
-                    pass
-                    # received_postback(messaging_event)
+                    received_postback(messaging_event)
 
                 else:    # uknown messaging_event
                     log("Webhook received unknown messaging_event: " + messaging_event)
@@ -154,6 +153,21 @@ def send_generic_message(recipient_id):
 
     call_send_api(message_data)
     
+
+def received_postback(event):
+
+    sender_id = event["sender"]["id"]        # the facebook ID of the person sending you the message
+    recipient_id = event["recipient"]["id"]  # the recipient's ID, which should be your page's facebook ID
+
+    # The payload param is a developer-defined field which is set in a postback
+    # button for Structured Messages
+    payload = event["postback"]["payload"]
+
+    log("received postback from {recipient} with payload {payload}".format(recipient=recipient_id, payload=payload))
+
+    # Notify sender that postback was successful
+    send_text_message(sender_id, "Postback called")
+
 
 def call_send_api(message_data):
 
