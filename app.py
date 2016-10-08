@@ -61,6 +61,7 @@ def received_message(event):
     
     # could receive text or attachment but not both
     message = event["message"]
+    log(message)   # display to heroku logs
     if message["text"]:
         message_text = message["text"] 
     elif message["attachments"]:
