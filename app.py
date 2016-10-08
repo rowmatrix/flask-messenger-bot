@@ -73,26 +73,15 @@ def received_message(event):
             pass
 
         elif message_text == 'generic':
-            # send_generic_message(sender_id)
-            pass
+            send_generic_message(sender_id)
 
         elif message_text == 'receipt':
             # send_receipt_message(sender_id)
             pass
 
-        else: # default
+        else: # default case
             send_text_message(sender_id, "Echo: " + message_text)
-            # if message_text == '1':
-            #     send_message(sender_id, "one\nHere's a link: https://en.wikipedia.org/wiki/1_%28number%29")
-            # elif message_text == '2':
-            #     send_message(sender_id, "two\nHere's a link: https://en.wikipedia.org/wiki/2_%28number%29")
-            # elif message_text == '3':
-            #     send_message(sender_id, "three\nHere's a link: https://en.wikipedia.org/wiki/3_%28number%29")
-            # elif message_text == '4':
-            #     send_message(sender_id, "four\nHere's a link: https://en.wikipedia.org/wiki/4_%28number%29")
-            # else:
-            #     send_message(sender_id, "What's this? Google: https://www.google.com/")
-            
+
     elif "attachments" in event["message"]:
         message_attachments = event["message"]["attachments"]   
         send_text_message(sender_id, "Message with attachment received")
@@ -111,6 +100,56 @@ def send_text_message(recipient_id, message_text):
             "text": message_text
         }
     })
+
+    call_send_api(message_data)
+
+
+def send_generic_message(recipient_id):
+
+    message_data = json.dumps({
+        "recipient": {
+            "id": recipient_id
+        },
+        "message": {
+            "attachment": {
+                "type": "template",
+                "payload": {
+                    "template_type": "generic",
+                    "elements": [{
+                        "title": "rift",
+                        "subtitle": "Next-generation virtual reality",
+                        "item_url": "https://www.oculus.com/en-us/rift/",               
+                        "image_url": "http://messengerdemo.parseapp.com/img/rift.png",
+                        "buttons": [{
+                            "type": "web_url",
+                            "url": "https://www.oculus.com/en-us/rift/",
+                            "title": "Open Web URL"
+                        }, {
+                            "type": "postback",
+                            "title": "Call Postback",
+                            "payload": "Payload for first bubble",
+                        }],
+                    }, {
+                        "title": "touch",
+                        "subtitle": "Your Hands, Now in VR",
+                        "item_url": "https://www.oculus.com/en-us/touch/",               
+                        "image_url": "http://messengerdemo.parseapp.com/img/touch.png",
+                        "buttons": [{
+                            "type": "web_url",
+                            "url": "https://www.oculus.com/en-us/touch/",
+                            "title": "Open Web URL"
+                        }, {
+                            "type": "postback",
+                            "title": "Call Postback",
+                            "payload": "Payload for second bubble",
+                        }]
+                    }]
+                }
+            }
+        }
+    })
+
+    log("sending message to {recipient}: {attachments}".format(recipient=recipient_id, attachments=message_data["attachment"]))
 
     call_send_api(message_data)
     
