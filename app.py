@@ -289,7 +289,7 @@ def send_share_message(recipient_id):
             "attachment": {
                 "type":"template",
                 "payload":{
-                    "template_type":"generic"
+                    "template_type":"generic",
                     "elements":[
                     {
                         "title":"Reddit link",
