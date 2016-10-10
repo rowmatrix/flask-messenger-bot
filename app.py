@@ -69,6 +69,9 @@ def received_message(event):
         elif message_text == 'file':
             send_file_message(sender_id)
 
+        elif message_text == 'audio':
+            send_audio_message(sender_id)
+
         elif message_text == 'button':
             # send_button_message(sender_id)
             pass
@@ -196,6 +199,29 @@ def send_file_message(recipient_id):
     log("sending file to {recipient}: ".format(recipient=recipient_id))
 
     call_send_api(message_data)
+
+
+def send_audio_message(recipient_id):
+
+    message_data = json.dumps({
+        "recipient": {
+            "id": recipient_id
+        },
+        "message": {
+            "attachment": {
+                "type":"audio",
+                "payload":{
+                    "url":"https://petersapparel.com/bin/clip.mp3"
+                }
+            }
+        }
+    })
+
+    log("sending audio to {recipient}: ".format(recipient=recipient_id))
+
+    call_send_api(message_data)
+
+
 
 def received_postback(event):
 
