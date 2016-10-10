@@ -66,6 +66,9 @@ def received_message(event):
         if message_text == 'image':
             send_image_message(sender_id)
 
+        elif message_text == 'file':
+            send_file_message(sender_id)
+
         elif message_text == 'button':
             # send_button_message(sender_id)
             pass
@@ -173,6 +176,26 @@ def send_image_message(recipient_id):
 
     call_send_api(message_data)
 
+
+def send_file_message(recipient_id):
+
+    message_data = json.dumps({
+        "recipient": {
+            "id": recipient_id
+        },
+        "message": {
+            "attachment": {
+                "type":"file",
+                "payload":{
+                    "url":"http://ee.usc.edu/~redekopp/ee355/EE355_Syllabus.pdf"
+                }
+            }
+        }
+    })
+
+    log("sending file to {recipient}: ".format(recipient=recipient_id))
+
+    call_send_api(message_data)
 
 def received_postback(event):
 
