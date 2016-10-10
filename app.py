@@ -211,7 +211,7 @@ def send_audio_message(recipient_id):
             "attachment": {
                 "type":"audio",
                 "payload":{
-                    "url":"https://petersapparel.com/bin/clip.mp3"
+                    "url":"http://traffic.libsyn.com/sedaily/kafka_streams_edited.mp3"
                 }
             }
         }
