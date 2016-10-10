@@ -292,9 +292,9 @@ def send_share_message(recipient_id):
                     "template_type":"generic"
                     "elements":[
                     {
-                        "title":"Reddit link"
-                        "subtitle":"Something funny or interesting"
-                        "image_url":"https://pbs.twimg.com/profile_images/667516091330002944/wOaS8FKS.png"
+                        "title":"Reddit link",
+                        "subtitle":"Something funny or interesting",
+                        "image_url":"https://pbs.twimg.com/profile_images/667516091330002944/wOaS8FKS.png",
                         "buttons":[
                             "type":"element_share"
                         ]
