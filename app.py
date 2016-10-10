@@ -81,9 +81,8 @@ def received_message(event):
         elif message_text == 'generic':
             send_generic_message(sender_id)
 
-        elif message_text == 'receipt':
-            # send_receipt_message(sender_id)
-            pass
+        elif message_text == 'share':
+            send_share_message(sender_id)
 
         else: # default case
             send_text_message(sender_id, "Echo: " + message_text)
@@ -275,6 +274,39 @@ def send_button_message(recipient_id):
     })
 
     log("sending button to {recipient}: ".format(recipient=recipient_id))
+
+    call_send_api(message_data)
+
+
+def send_share_message(recipient_id):
+
+    # Share button only works with Generic Template
+    message_data = json.dumps({
+        "recipient": {
+            "id": recipient_id
+        },
+        "message": {
+            "attachment": {
+                "type":"template",
+                "payload":{
+                    "template_type":"generic"
+                    "elements":[
+                    {
+                        "title":"Reddit link"
+                        "subtitle":"Something funny or interesting"
+                        "image_url":"https://pbs.twimg.com/profile_images/667516091330002944/wOaS8FKS.png"
+                        "buttons":[
+                            "type":"element_share"
+                        ]
+                    }    
+                    ]
+                }
+        
+            }
+        }
+    })
+
+    log("sending share button to {recipient}: ".format(recipient=recipient_id))
 
     call_send_api(message_data)
 
