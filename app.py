@@ -76,8 +76,7 @@ def received_message(event):
             send_video_message(sender_id)
 
         elif message_text == 'button':
-            # send_button_message(sender_id)
-            pass
+            send_button_message(sender_id)
 
         elif message_text == 'generic':
             send_generic_message(sender_id)
@@ -245,6 +244,39 @@ def send_video_message(recipient_id):
 
     call_send_api(message_data)
 
+
+def send_button_message(recipient_id):
+
+    message_data = json.dumps({
+        "recipient": {
+            "id": recipient_id
+        },
+        "message": {
+            "attachment": {
+                "type":"template",
+                "payload":{
+                    "template_type":"button",
+                    "text":"What do you want to do next?",
+                    "buttons":[
+                    {
+                        "type":"web_url",
+                        "url":"https://www.google.com",
+                        "title":"Google"
+                    },
+                    {
+                        "type":"postback",
+                        "title":"Call Postback",
+                        "payload":"Payload for send_button_message()"
+                    }
+                    ]
+                }
+            }
+        }
+    })
+
+    log("sending video to {recipient}: ".format(recipient=recipient_id))
+
+    call_send_api(message_data)
 
 
 def received_postback(event):
