@@ -274,7 +274,7 @@ def send_button_message(recipient_id):
         }
     })
 
-    log("sending video to {recipient}: ".format(recipient=recipient_id))
+    log("sending button to {recipient}: ".format(recipient=recipient_id))
 
     call_send_api(message_data)
 
