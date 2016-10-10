@@ -72,6 +72,9 @@ def received_message(event):
         elif message_text == 'audio':
             send_audio_message(sender_id)
 
+        elif message_text == 'video':
+            send_video_message(sender_id)
+
         elif message_text == 'button':
             # send_button_message(sender_id)
             pass
@@ -218,6 +221,27 @@ def send_audio_message(recipient_id):
     })
 
     log("sending audio to {recipient}: ".format(recipient=recipient_id))
+
+    call_send_api(message_data)
+
+
+def send_video_message(recipient_id):
+
+    message_data = json.dumps({
+        "recipient": {
+            "id": recipient_id
+        },
+        "message": {
+            "attachment": {
+                "type":"video",
+                "payload":{
+                    "url":"http://techslides.com/demos/sample-videos/small.mp4"
+                }
+            }
+        }
+    })
+
+    log("sending video to {recipient}: ".format(recipient=recipient_id))
 
     call_send_api(message_data)
 
