@@ -64,8 +64,7 @@ def received_message(event):
 
         # parse message_text and give appropriate response   
         if message_text == 'image':
-            # send_image_message(sender_id)
-            pass
+            send_image_message(sender_id)
 
         elif message_text == 'button':
             # send_button_message(sender_id)
@@ -86,7 +85,7 @@ def received_message(event):
         send_text_message(sender_id, "Message with attachment received")
 
 
-
+# Message event functions
 def send_text_message(recipient_id, message_text):
 
     # encode('utf-8') included to log emojis to heroku logs
@@ -149,10 +148,31 @@ def send_generic_message(recipient_id):
         }
     })
 
-    log("sending message_attachments to {recipient}: ".format(recipient=recipient_id))
+    log("sending template with choices to {recipient}: ".format(recipient=recipient_id))
 
     call_send_api(message_data)
     
+
+def send_image_message(recipient_id):
+
+    message_data = json.dumps({
+        "recipient": {
+            "id": recipient_id
+        },
+        "message": {
+            "attachment": {
+                "type":"image",
+                "payload":{
+                    "url":"http://i.imgur.com/76rJlO9.jpg"
+                }
+            }
+        }
+    })
+
+    log("sending image to {recipient}: ".format(recipient=recipient_id))
+
+    call_send_api(message_data)
+
 
 def received_postback(event):
 
