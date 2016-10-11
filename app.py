@@ -374,28 +374,28 @@ def log(message):  # simple wrapper for logging to stdout on heroku
     sys.stdout.flush()
 
 
-# @app.route('/', methods=['POST'])
-# def set_greeting_text():
-#     # Sets greeting text on welcome screen
-#     message_data = json.dumps({
-#         "setting_type":"greeting",
-#         "greeting":{
-#             "text":"Hi {{user_first_name}}, welcome to this bot."
-#         }
-#     })
-#     params = {
-#         "access_token": os.environ["PAGE_ACCESS_TOKEN"]
-#     }
-#     headers = {
-#         "Content-Type": "application/json"
-#     }
+@app.route('/', methods=['POST'])
+def set_greeting_text():
+    # Sets greeting text on welcome screen
+    message_data = json.dumps({
+        "setting_type":"greeting",
+        "greeting":{
+            "text":"Hi {{user_first_name}}, welcome to this bot."
+        }
+    })
+    params = {
+        "access_token": os.environ["PAGE_ACCESS_TOKEN"]
+    }
+    headers = {
+        "Content-Type": "application/json"
+    }
     
-#     r = requests.post("https://graph.facebook.com/v2.6/me/thread_settings", params=params, headers=headers, data=message_data)
-#     if r.status_code != 200:
-#         log(r.status_code)
-#         log(r.text)
+    r = requests.post("https://graph.facebook.com/v2.6/me/thread_settings", params=params, headers=headers, data=message_data)
+    if r.status_code != 200:
+        log(r.status_code)
+        log(r.text)
 
-#     return "ok", 200
+    return "ok", 200
 
     
 
