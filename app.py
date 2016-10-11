@@ -22,7 +22,7 @@ def verify():
 
 @app.route('/', methods=['POST'])
 def set_greeting_text():
-    # Sets greeting text
+    # Sets greeting text on welcome screen
     message_data = json.dumps({
         "setting_type":"greeting",
         "greeting":{
@@ -42,6 +42,7 @@ def set_greeting_text():
         log(r.text)
 
 
+@app.route('/', methods=['POST'])
 def webhook():
 
     # endpoint for processing incoming messaging events
