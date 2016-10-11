@@ -348,7 +348,7 @@ def log(message):  # simple wrapper for logging to stdout on heroku
     sys.stdout.flush()
 
 
-@app.route('/', methods=['POST'])
+# @app.route('/', methods=['POST'])
 def set_greeting_text():
     # Sets greeting text on welcome screen
     message_data = json.dumps({
