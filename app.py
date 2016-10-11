@@ -20,31 +20,31 @@ def verify():
     return "Hello world", 200
 
 
-@app.route('/', methods=['POST'])
-def set_get_started_button():
-    # Sets get started button on welcome screen
-    message_data = json.dumps({
-        "setting_type":"call_to_actions",
-        "thread_state":"new_thread",
-        "call_to_actions":[
-        {
-            "payload":"Get Started"
-        }
-        ]
-    })
-    params = {
-        "access_token": os.environ["PAGE_ACCESS_TOKEN"]
-    }
-    headers = {
-        "Content-Type": "application/json"
-    }
+# @app.route('/', methods=['POST'])
+# def set_get_started_button():
+#     # Sets get started button on welcome screen
+#     message_data = json.dumps({
+#         "setting_type":"call_to_actions",
+#         "thread_state":"new_thread",
+#         "call_to_actions":[
+#         {
+#             "payload":"Get Started"
+#         }
+#         ]
+#     })
+#     params = {
+#         "access_token": os.environ["PAGE_ACCESS_TOKEN"]
+#     }
+#     headers = {
+#         "Content-Type": "application/json"
+#     }
     
-    r = requests.post("https://graph.facebook.com/v2.6/me/thread_settings", params=params, headers=headers, data=message_data)
-    if r.status_code != 200:
-        log(r.status_code)
-        log(r.text)
+#     r = requests.post("https://graph.facebook.com/v2.6/me/thread_settings", params=params, headers=headers, data=message_data)
+#     if r.status_code != 200:
+#         log(r.status_code)
+#         log(r.text)
 
-    return "ok", 200
+#     return "ok", 200
 
 @app.route('/', methods=['POST'])   
 def webhook():
