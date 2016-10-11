@@ -46,7 +46,7 @@ def set_get_started_button():
 
     return "ok", 200
 
-    
+@app.route('/', methods=['POST'])   
 def webhook():
 
     # endpoint for processing incoming messaging events
