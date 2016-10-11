@@ -372,7 +372,7 @@ def log(message):  # simple wrapper for logging to stdout on heroku
 #     return "ok", 200
 
 
-# @app.route('/', methods=['POST'])
+@app.route('/', methods=['POST'])
 def set_get_started_button():
     # Sets get started button on welcome screen
     message_data = json.dumps({
