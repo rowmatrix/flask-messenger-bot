@@ -41,6 +41,7 @@ def set_get_started_button():
     
     r = requests.post("https://graph.facebook.com/v2.6/me/thread_settings", params=params, headers=headers, data=message_data)
     if r.status_code != 200:
+        log("setting get started button")
         log(r.status_code)
         log(r.text)
 
@@ -392,6 +393,7 @@ def set_greeting_text():
     
     r = requests.post("https://graph.facebook.com/v2.6/me/thread_settings", params=params, headers=headers, data=message_data)
     if r.status_code != 200:
+        log("setting greeting text")
         log(r.status_code)
         log(r.text)
 
