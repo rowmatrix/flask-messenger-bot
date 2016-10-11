@@ -41,6 +41,8 @@ def set_greeting_text():
         log(r.status_code)
         log(r.text)
 
+    return "ok", 200
+
 
 @app.route('/', methods=['POST'])
 def webhook():
